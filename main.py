@@ -10,8 +10,8 @@ import time
 time_to_read = 1 ## Time between each print statement, to give the user time to read the instructions
 weighted_gpa_list = [] ## Table that will contain the user's weighted grade-point-averages
 unweighted_gpa_list = [] ## Table that will contain the user's unweighted grade-point averages
-honors_factor = 0.5 ## Factor by which the grade-point-average of Honors-level classes increases
-ap_factor = 1 ## Factor by which the grade-point-average of AP-level classes increases
+honors_factor = 1.08 ## Factor by which the grade-point-average of Honors-level classes increases
+ap_factor = 1.15 ## Factor by which the grade-point-average of AP-level classes increases
 
 ## This function calculates the unweighted grade-point-average of the user based on a scale
 def calculate_unweighted(grade):
@@ -38,15 +38,15 @@ def calculate_unweighted(grade):
   else:
     return 0.0
 
-## This function calculates the user's weighted grade-point-average, by taking the unweighted GPA and adding the weighted factor for the associated class's rigor level
+## This function calculates the user's weighted grade-point-average, by taking the unweighted GPA and multiplying the weighted factor for the associated class's rigor level
 def calculate_weighted(gpa, rigor):
   if rigor == "Regular":
     return gpa
   elif rigor == "Honors":
-    weighted_gpa = gpa + honors_factor
+    weighted_gpa = gpa * honors_factor
     return weighted_gpa
   elif rigor == "AP":
-    weighted_gpa = gpa + ap_factor
+    weighted_gpa = gpa * ap_factor
     return weighted_gpa
 
 number_of_subjects = False ## The default value of this is false; will be explained more as we progress through the code
