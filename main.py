@@ -7,7 +7,7 @@ import statistics
 import time
 
 ## Variables are declared below
-line_transition_time = 1 ## Time between each print statement, to give the user time to read the instructions
+time_to_read = 1 ## Time between each print statement, to give the user time to read the instructions
 weighted_gpa_list = [] ## Table that will contain the user's weighted grade-point-averages
 unweighted_gpa_list = [] ## Table that will contain the user's unweighted grade-point averages
 honors_factor = 0.5 ## Factor by which the grade-point-average of Honors-level classes increases
@@ -57,6 +57,7 @@ if not "y" in reply_to_prompt.lower(): ## If the user has the character "y" anyw
   sys.exit("The user did not wish to continue with the program.")
 
 print("Please respond to the questions in the answer-format associated with that question!")
+time.sleep(time_to_read)
 
 while not number_of_subjects: ## Loop keeps going until number_of_subjects is not equal to False
   user_response = input("How many subjects do you have?: ")
@@ -77,6 +78,7 @@ for class_count in range(number_of_subjects):
   else: ## If it's not the first cycle of the loop, this statement prints
     print("Let's continue to the next class!")
 
+  time.sleep(time_to_read)
   while not class_name: ## Loop keeps going until class_name is not False
     user_response = input("Please enter the name of your current class: ")
     if isinstance(user_response, str):
@@ -85,8 +87,11 @@ for class_count in range(number_of_subjects):
       print("Your response was invalid. Please try again.") ## If the user response is invalid, the variable is still False and the loop continues
 
   print("What rigor-level is the class '" + class_name + "'? Is it Regular, Honors, GT, OnRamps, or AP?")
+  time.sleep(time_to_read)
   print("If you have an a class that is both AP & GT or AP & OnRamps, just respond with 'AP' for the level of your class.")
+  time.sleep(time_to_read)
   print("If this is left blank, it will be considered a regular class.")
+  time.sleep(time_to_read)
 
   while not class_rigor: ## Keeps looping until class_rigor is not False
     user_response = input("Please enter your class rigor-level here: ").lower() ## Gets the lowercase string of the user_response
@@ -103,7 +108,7 @@ for class_count in range(number_of_subjects):
     else:
       print("Your response was invalid. Please try again.") ## If the user response meets none of the conditions above, the loop continues as class_rigor is still False
       
-
+  time.sleep(time_to_read)
   while not class_grade: ## This loop keeps looping until class_grade is not False 
     user_response = input("What is your grade, from 0-100, in the class '" + class_name + "'?: ")
     if user_response.isdigit(): ## Checking if the user response is a digit
@@ -122,6 +127,7 @@ for class_count in range(number_of_subjects):
 unweighted_gpa = round(statistics.mean(unweighted_gpa_list), 2) ## The unweighted_gpa is calulated by finding the mean/average of the unweighted_gpa_list
 weighted_gpa = round(statistics.mean(weighted_gpa_list), 2) ## The weighted_gpa is calculated by find the mean/average of the weighted_gpa_list
 print("I appreciate all that data. Please give me a moment to calculate your unweighted grade-point-average.")
+time.sleep(time_to_read)
 ## Both grade-point-averages are displayed to the user below
 print("Your unweighted GPA is a " + str(unweighted_gpa))
 print("And, your weighted GPA is a " + str(weighted_gpa))
